@@ -40,3 +40,18 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+.color.color {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  font-size: 30px;
+  font-weight: 400;
+  padding: 10px 10px 10px 5px;
+  border-bottom: 1px solid #ebebeb !important;
+  border: none;
+  box-sizing: border-box;
+  margin-top: 22px;
+  box-shadow: none;
+  font-family: cursive;
+}

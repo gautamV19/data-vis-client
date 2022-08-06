@@ -4,7 +4,6 @@ import Home from "./Home";
 import Wordcloud from "./Wordcloud";
 
 function App() {
-  const startDate = new Date();
   return (
     <Stack justifyContent="space-between">
       <Router>
