@@ -1,0 +1,19 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.tippy-box[data-theme~="tomato"] {
+  background-color: white;
+  color: black;
+  border-width: 12px 12px 0;
+}
+.Wordcloud {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 500px;
+  width: 1200px;
+}

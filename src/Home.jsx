@@ -35,7 +35,7 @@ function App() {
         </Box>
       </Grid>
       <Button variant="contained" color="primary">
-        Get
+        <a href="/words">Get</a>
       </Button>
     </Grid>
   );
