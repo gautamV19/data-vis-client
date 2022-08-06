@@ -13,7 +13,7 @@ function App() {
   const [endDate, setEndDate] = useState(new Date());
 
   return (
-    <Grid container justifyContent="center" alignItems="flex-end" p={1}>
+    <Grid container justifyContent="center" alignItems="flex-end" p={2}>
       {/* <Grid container justifyContent="center" alignItems="flex-end"> */}
       {/* <CardMedia title="T L D V" image={youtube} /> */}
       <Grid>
@@ -27,7 +27,7 @@ function App() {
         spacing={2}
         justifyContent="space-evenly"
         alignItems="center"
-        mt={8}
+        mt={10}
         mb={6}
       >
         <Grid>

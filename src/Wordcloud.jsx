@@ -9,6 +9,8 @@ import "tippy.js/themes/material.css";
 import Slider from "@material-ui/core/Slider";
 import Chip from "@material-ui/core/Chip";
 import _ from "underscore";
+import { Grid, Box, Typography, Button } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 
 class Wordcloud extends React.Component {
   constructor(props) {
@@ -87,15 +89,16 @@ class Wordcloud extends React.Component {
       "</b><br><b>Analysis: Positive",
   };
   shifteventhandler(word, event) {
-    if (event.shiftKey) {
-      this.setState({
-        wordsselected: [...this.state.wordsselected, word.text],
-      });
-      console.log(this.state.wordsselected);
-    } else {
-      console.log("Press shift key");
-      console.log(this.state.wordsselected);
-    }
+    console.log(word.text);
+    // if (event.shiftKey) {
+    //   this.setState({
+    //     wordsselected: [...this.state.wordsselected, word.text],
+    //   });
+    //   console.log(this.state.wordsselected);
+    // } else {
+    //   console.log("Press shift key");
+    //   console.log(this.state.wordsselected);
+    // }
   }
   valuetext(event, value) {
     if (value === 0) {
@@ -116,7 +119,7 @@ class Wordcloud extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Grid container justifyContent="center">
         {this.state.wordsselected.map((data) => {
           return (
             <Chip
@@ -128,17 +131,19 @@ class Wordcloud extends React.Component {
           );
         })}
 
-        <div className="Wordcloud">
+        <Grid container className="Wordcloud">
           <ReactWordcloud
             words={words}
             maxWords={this.state.maxwords}
             callbacks={this.callbacks}
             options={this.options}
           />
-        </div>
+        </Grid>
 
-        <div style={{ width: 300, textAlign: "center", marginLeft: 200 }}>
-          <span style={{}}>Slider</span>
+        {/* <Grid style={{ width: 300, textAlign: "center", marginLeft: 200 }}>
+          <Typography variant="h5" color="initial">
+            Slider
+          </Typography>
           <Slider
             defaultValue={0}
             aria-labelledby="discrete-slider-restrict"
@@ -148,8 +153,21 @@ class Wordcloud extends React.Component {
             onChangeCommitted={this.valuetext}
             track={false}
           />
-        </div>
-      </div>
+        </Grid> */}
+
+        <Grid>
+          <Button
+            variant="contained"
+            color="secondary"
+            href="/"
+            // size="large"
+            // fullWidth
+            sx={{ fontSize: "50px", height: "100px", width: "200px" }}
+          >
+            <HomeIcon sx={{ fontSize: "50px" }} />
+          </Button>
+        </Grid>
+      </Grid>
     );
   }
 }
