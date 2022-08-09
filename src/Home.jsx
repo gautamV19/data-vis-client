@@ -19,7 +19,7 @@ function App() {
       <Grid>
         <img src={youtube} alt="youtube icon" style={{ height: "150px" }} />
       </Grid>
-      <Typography variant="h1" color="initial" fontFamily="cursive">
+      <Typography variant="h1" color="initial">
         Time Laps Date Visulizer
       </Typography>
       <Grid
@@ -31,7 +31,7 @@ function App() {
         mb={6}
       >
         <Grid>
-          <Typography variant="h5" color="initial">
+          <Typography variant="h3" color="initial">
             Start Date
           </Typography>
           <ModernDatepicker
@@ -48,7 +48,7 @@ function App() {
           />
         </Grid>
         <Grid>
-          <Typography variant="h5" color="initial">
+          <Typography variant="h3" color="initial">
             End Date
           </Typography>
           <ModernDatepicker
@@ -68,7 +68,7 @@ function App() {
       <Grid>
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           href="/words"
           // size="large"
           // fullWidth
