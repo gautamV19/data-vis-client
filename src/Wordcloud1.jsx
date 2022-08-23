@@ -12,6 +12,9 @@ import _ from "underscore";
 import { Grid, Box, Typography, Button } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 
+import { getLayer2 } from "./Features/layers/layersServices";
+import { useSelector, useDispatch } from "react-redux";
+
 class Wordcloud extends React.Component {
   constructor(props) {
     super(props);
@@ -90,6 +93,9 @@ class Wordcloud extends React.Component {
   };
   shifteventhandler(word, event) {
     console.log(word.text);
+
+    dispatch(getLayer2(word.text));
+
     // if (event.shiftKey) {
     //   this.setState({
     //     wordsselected: [...this.state.wordsselected, word.text],
@@ -118,6 +124,8 @@ class Wordcloud extends React.Component {
     console.log(index);
   }
   render() {
+    const dispatch = useDispatch();
+
     return (
       <Grid container justifyContent="center">
         {this.state.wordsselected.map((data) => {

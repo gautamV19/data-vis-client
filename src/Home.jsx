@@ -7,10 +7,23 @@ import Button from "@mui/material/Button";
 import youtube from "/youtube.png";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { getLayer1 } from "./Features/layers/layersServices";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const handleGo = () => {
+    const payload = {
+      startDate,
+      endDate,
+    };
+
+    dispatch(getLayer1(payload));
+  };
 
   return (
     <Grid container justifyContent="center" alignItems="flex-end" p={2}>
@@ -70,6 +83,7 @@ function App() {
           href="/words"
           // size="large"
           // fullWidth
+          onClick={{ handleGo }}
           sx={{ fontSize: "50px", height: "100px", width: "200px" }}
         >
           Go
