@@ -14,8 +14,6 @@ function App() {
 
   return (
     <Grid container justifyContent="center" alignItems="flex-end" p={2}>
-      {/* <Grid container justifyContent="center" alignItems="flex-end"> */}
-      {/* <CardMedia title="T L D V" image={youtube} /> */}
       <Grid>
         <img src={youtube} alt="youtube icon" style={{ height: "150px" }} />
       </Grid>
