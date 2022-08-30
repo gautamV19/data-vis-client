@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -41,13 +42,18 @@ function SimpleWordcloud() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { layer2: words, start, end } = useSelector((state) => state.layers);
+  const {
+    isLoading,
+    layer2: words,
+    start,
+    end,
+  } = useSelector((state) => state.layers);
 
-  // console.log(words.data);
+  console.log(words);
 
   let d = [];
 
-  words.data.forEach((e) => {
+  words.forEach((e) => {
     d.push({ text: e[0], value: e[1] });
   });
 
@@ -66,7 +72,13 @@ function SimpleWordcloud() {
     //     `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
   };
 
-  return (
+  return isLoading ? (
+    <div id="root">
+      <div class="loader-wrapper">
+        <div class="loader"></div>
+      </div>
+    </div>
+  ) : (
     <ReactWordcloud
       minSize={[200, 140]}
       callbacks={callbacks}

@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./styles.css";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -19,22 +20,25 @@ import { useSelector } from "react-redux";
 import { Satellite } from "@mui/icons-material";
 
 export default function InteractiveList() {
-  const { layer3 } = useSelector((state) => state.layers);
+  const { isLoading, layer3 } = useSelector((state) => state.layers);
 
   console.log(layer3);
 
-  let vdoList = layer3.data[0];
+  let vdoList = [];
 
-  const data = [
-    "AFFAIRS, EX BOYFRIENDS, $18MILLION NET WORTH - GOOGLE US | Shawn and Andrew",
-    "STI2fI7sKMo",
-  ];
+  layer3.forEach((l) => {
+    vdoList.push(l[0]);
+  });
 
   console.log(vdoList);
 
-  console.log(data);
-
-  return (
+  return isLoading ? (
+    <div id="root">
+      <div class="loader-wrapper">
+        <div class="loader"></div>
+      </div>
+    </div>
+  ) : (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
       <Grid item xs={12} md={6}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">

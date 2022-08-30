@@ -13,9 +13,11 @@ import {
 } from "./Features/layers/layersSlice";
 import { getLayer1 } from "./Features/layers/layersServices";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let newDate = new Date();
   newDate.toISOString().split("T")[0];
@@ -32,6 +34,7 @@ function App() {
     dispatch(setStartDateAction(start));
     dispatch(setEndDateAction(end));
     dispatch(getLayer1(payload));
+    navigate("/layer1");
   };
 
   return (
@@ -89,7 +92,6 @@ function App() {
         <Button
           variant="contained"
           color="primary"
-          href="/layer1"
           // size="large"
           // fullWidth
           onClick={handleGo}

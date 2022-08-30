@@ -7,7 +7,7 @@ let newDate = new Date()
 newDate.toISOString().split('T')[0]
 
 const initialState = {
-    isLoding: false,
+    isLoading: false,
     start: newDate,
     end: newDate,
     layer1: [],
@@ -29,56 +29,59 @@ const layersSlice = createSlice({
     },
     extraReducers: {
         [getLayer1.pending]: (state) => {
-            state.isLoding = true;
+            state.isLoading = true;
         },
         [getLayer1.fulfilled]: (state, action) => {
-            state.isLoding = false;
+            state.isLoading = false;
             console.log('slice action of getLayer1: ', action);
-            if (action.payload.status == 200) {
-                state.layer1 = action.payload.data;
+            let currPayload = action.payload.data;
+            if (currPayload.status == 200) {
+                state.layer1 = currPayload.data;
             } else {
-                state.error = action.payload.error;
+                state.error = currPayload.error;
             }
         },
         [getLayer1.rejected]: (state, action) => {
-            state.isLoding = false;
-            state.error = action.payload.error;
+            state.isLoading = false;
+            state.error = action.payload.data.error;
         },
 
         [getLayer2.pending]: (state) => {
             console.log('pending');
-            state.isLoding = true;
+            state.isLoading = true;
         },
         [getLayer2.fulfilled]: (state, action) => {
             console.log('fullfilled', action);
-            if (action.payload.status == 200) {
-                state.layer2 = action.payload.data;
+            let currPayload = action.payload.data;
+            if (currPayload.status == 200) {
+                state.layer2 = currPayload.data;
             } else {
-                state.error = action.payload.error;
+                state.error = currPayload.error;
             }
-            state.isLoding = false;
+            state.isLoading = false;
         },
         [getLayer2.rejected]: (state, action) => {
-            state.isLoding = false;
-            state.error = action.payload.error;
+            state.isLoading = false;
+            state.error = action.payload.data.error;
         },
 
         [getLayer3.pending]: (state) => {
             console.log('pending getLayer3');
-            state.isLoding = true;
+            state.isLoading = true;
         },
         [getLayer3.fulfilled]: (state, action) => {
             console.log('fullfilled getLayer3', action);
-            if (action.payload.status == 200) {
-                state.layer3 = action.payload.data;
+            let currPayload = action.payload.data;
+            if (currPayload.status == 200) {
+                state.layer3 = currPayload.data;
             } else {
-                state.error = action.payload.error;
+                state.error = currPayload.error;
             }
-            state.isLoding = false;
+            state.isLoading = false;
         },
         [getLayer3.rejected]: (state, action) => {
-            state.isLoding = false;
-            state.error = action.payload.error;
+            state.isLoading = false;
+            state.error = action.payload.data.error;
         },
     },
 });
