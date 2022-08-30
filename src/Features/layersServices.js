@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { urls } from '../../../config/urls';
+import { urls } from '../../config/urls';
 
 axios.defaults.baseURL = `http://localhost:3000`
 

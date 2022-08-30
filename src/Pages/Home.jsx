@@ -1,17 +1,12 @@
-import "./App.css";
+import "../Assets/App.css";
 import { useState } from "react";
 import ModernDatepicker from "react-modern-datepicker";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import youtube from "/youtube.png";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {
-  setStartDateAction,
-  setEndDateAction,
-} from "./Features/layers/layersSlice";
-import { getLayer1 } from "./Features/layers/layersServices";
+import { setStartDateAction, setEndDateAction } from "../Features/layersSlice";
+import { getLayer1 } from "../Features/layersServices";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -92,8 +87,6 @@ function App() {
         <Button
           variant="contained"
           color="primary"
-          // size="large"
-          // fullWidth
           onClick={handleGo}
           sx={{ fontSize: "50px", height: "100px", width: "200px" }}
         >

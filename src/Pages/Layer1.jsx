@@ -1,16 +1,12 @@
 import React from "react";
-import "./styles.css";
+import "../Assets/styles.css";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { useDispatch, useSelector } from "react-redux";
-import { WorkSharp } from "@mui/icons-material";
-import { getLayer2 } from "./Features/layers/layersServices";
+import { getLayer2 } from "../Features/layersServices";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
-import Button from "@mui/material/Button";
-import { Box, Grid, Typography } from "@material-ui/core";
-import GoToHome from "./GoToHome";
+import GoToHome from "../Widgets/GoToHome";
 
 function SimpleWordcloud() {
   const dispatch = useDispatch();
