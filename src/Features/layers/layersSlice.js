@@ -2,8 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getLayer1 } from './layersServices';
 import { getLayer2 } from './layersServices';
 import { getLayer3 } from './layersServices';
+
+let newDate = new Date()
+newDate.toISOString().split('T')[0]
+
 const initialState = {
     isLoding: false,
+    start: newDate,
+    end: newDate,
     layer1: [],
     layer2: [],
     layer3: [],
@@ -13,6 +19,14 @@ const initialState = {
 const layersSlice = createSlice({
     name: 'layers',
     initialState,
+    reducers: {
+        setStartDateAction(state, action) {
+            state.start = action.payload;
+        },
+        setEndDateAction(state, action) {
+            state.end = action.payload;
+        }
+    },
     extraReducers: {
         [getLayer1.pending]: (state) => {
             state.isLoding = true;
@@ -69,5 +83,6 @@ const layersSlice = createSlice({
     },
 });
 
+export const { setStartDateAction, setEndDateAction } = layersSlice.actions
 export default layersSlice.reducer;
 

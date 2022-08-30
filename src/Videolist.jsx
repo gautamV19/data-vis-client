@@ -19,7 +19,20 @@ import { useSelector } from "react-redux";
 import { Satellite } from "@mui/icons-material";
 
 export default function InteractiveList() {
-  const { isLoading, layer3 } = useSelector((state) => state.layers);
+  const { layer3 } = useSelector((state) => state.layers);
+
+  console.log(layer3);
+
+  let vdoList = layer3.data[0];
+
+  const data = [
+    "AFFAIRS, EX BOYFRIENDS, $18MILLION NET WORTH - GOOGLE US | Shawn and Andrew",
+    "STI2fI7sKMo",
+  ];
+
+  console.log(vdoList);
+
+  console.log(data);
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -28,14 +41,14 @@ export default function InteractiveList() {
           Trending Videos
         </Typography>
         <List>
-          {layer3.map((l) => {
-            <ListItem>
+          {vdoList.map((l, key) => (
+            <ListItem key={key}>
               <ListItemIcon>
                 <FolderIcon />
               </ListItemIcon>
               <ListItemText primary={l} />
-            </ListItem>;
-          })}
+            </ListItem>
+          ))}
         </List>
       </Grid>
     </Box>

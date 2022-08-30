@@ -7,21 +7,30 @@ import Button from "@mui/material/Button";
 import youtube from "/youtube.png";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import {
+  setStartDateAction,
+  setEndDateAction,
+} from "./Features/layers/layersSlice";
 import { getLayer1 } from "./Features/layers/layersServices";
 import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  let newDate = new Date();
+  newDate.toISOString().split("T")[0];
+
+  const [start, setStartDate] = useState(newDate);
+  const [end, setEndDate] = useState(newDate);
 
   const handleGo = () => {
     const payload = {
-      startDate,
-      endDate,
+      start,
+      end,
     };
-
+    console.log("Payload :", payload);
+    dispatch(setStartDateAction(start));
+    dispatch(setEndDateAction(end));
     dispatch(getLayer1(payload));
   };
 
@@ -46,8 +55,8 @@ function App() {
             Start Date
           </Typography>
           <ModernDatepicker
-            date={startDate}
-            format={"DD-MM-YYYY"}
+            date={start}
+            format={"YYYY-MM-DD"}
             // label="Start Date"
             showBorder
             className="color"
@@ -63,8 +72,8 @@ function App() {
             End Date
           </Typography>
           <ModernDatepicker
-            date={endDate}
-            format={"DD-MM-YYYY"}
+            date={end}
+            format={"YYYY-MM-DD"}
             // label="End Date"
             className="color"
             showBorder
@@ -80,10 +89,10 @@ function App() {
         <Button
           variant="contained"
           color="primary"
-          href="/words"
+          href="/layer1"
           // size="large"
           // fullWidth
-          onClick={{ handleGo }}
+          onClick={handleGo}
           sx={{ fontSize: "50px", height: "100px", width: "200px" }}
         >
           Go
