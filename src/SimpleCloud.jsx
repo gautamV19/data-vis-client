@@ -7,13 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { WorkSharp } from "@mui/icons-material";
 import { getLayer2 } from "./Features/layers/layersServices";
 import { useNavigate } from "react-router-dom";
-
-const options = {
-  rotationAngles: [0, 0],
-  fontSizes: [5, 500],
-  deterministic: true,
-  fontFamily: "cursive",
-};
+import HomeIcon from "@mui/icons-material/Home";
+import Button from "@mui/material/Button";
+import { Box, Grid, Typography } from "@material-ui/core";
+import GoToHome from "./GoToHome";
 
 function SimpleWordcloud() {
   const dispatch = useDispatch();
@@ -32,8 +29,6 @@ function SimpleWordcloud() {
     d.push({ text: e[0], value: e[1] });
   });
 
-  console.log(d);
-
   const myfun = (e) => {
     const payload = { start, end, category: e.text };
     console.log(payload);
@@ -43,18 +38,24 @@ function SimpleWordcloud() {
 
   const callbacks = {
     onWordClick: myfun,
-    //   getWordTooltip: (word) =>
-    //     `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
+    getWordTooltip: (word) => `${word.text}`,
+  };
+
+  const options = {
+    deterministic: true,
+    fontFamily: "cursive",
   };
 
   return isLoading ? (
     <div id="root">
-      <div class="loader-wrapper">
-        <div class="loader"></div>
+      <div className="loader-wrapper">
+        <div className="loader"></div>
       </div>
     </div>
+  ) : d.length > 0 ? (
+    <ReactWordcloud callbacks={callbacks} words={d} options={options} />
   ) : (
-    <ReactWordcloud callbacks={callbacks} words={d} />
+    <GoToHome />
   );
 }
 

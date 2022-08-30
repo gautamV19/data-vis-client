@@ -7,36 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { WorkSharp } from "@mui/icons-material";
 import { getLayer3 } from "./Features/layers/layersServices";
 import { useNavigate } from "react-router-dom";
-
-const data = [
-  { text: "jQuery", value: 25 },
-  { text: "MongoDB", value: 18 },
-  { text: "JavaScript", value: 38 },
-  { text: "React", value: 30 },
-  { text: "Nodejs", value: 28 },
-  { text: "Express.js", value: 25 },
-  { text: "HTML5", value: 33 },
-  { text: "CSS3", value: 20 },
-  { text: "Webpack", value: 22 },
-  { text: "Babel.js", value: 7 },
-  { text: "ECMAScript", value: 25 },
-  { text: "Jest", value: 15 },
-  { text: "Mocha", value: 17 },
-  { text: "React Native", value: 27 },
-  { text: "Angular.js", value: 30 },
-  { text: "TypeScript", value: 15 },
-  { text: "Flow", value: 30 },
-  { text: "NPM", value: 11 },
-];
-
-const options = {
-  rotationAngles: [0, 0],
-  fontSizes: [50, 200],
-  deterministic: true,
-  fontFamily: "cursive",
-};
-
-const size = [600, 400];
+import GoToHome from "./GoToHome";
 
 function SimpleWordcloud() {
   const dispatch = useDispatch();
@@ -49,15 +20,11 @@ function SimpleWordcloud() {
     end,
   } = useSelector((state) => state.layers);
 
-  console.log(words);
-
   let d = [];
 
   words.forEach((e) => {
     d.push({ text: e[0], value: e[1] });
   });
-
-  console.log(d);
 
   const myfun = (e) => {
     const payload = { start, end, tag: e.text };
@@ -68,24 +35,24 @@ function SimpleWordcloud() {
 
   const callbacks = {
     onWordClick: myfun,
-    //   getWordTooltip: (word) =>
-    //     `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
+    getWordTooltip: (word) => `${word.text}`,
+  };
+
+  const options = {
+    deterministic: true,
+    fontFamily: "cursive",
   };
 
   return isLoading ? (
     <div id="root">
-      <div class="loader-wrapper">
-        <div class="loader"></div>
+      <div className="loader-wrapper">
+        <div className="loader"></div>
       </div>
     </div>
+  ) : d.length > 0 ? (
+    <ReactWordcloud callbacks={callbacks} words={d} options={options} />
   ) : (
-    <ReactWordcloud
-      minSize={[200, 140]}
-      callbacks={callbacks}
-      options={options}
-      size={size}
-      words={d}
-    />
+    <GoToHome />
   );
 }
 

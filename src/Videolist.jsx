@@ -14,43 +14,59 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import FolderIcon from "@mui/icons-material/Folder";
-import DeleteIcon from "@mui/icons-material/Delete";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 import { Satellite } from "@mui/icons-material";
+import GoToHome from "./GoToHome";
+// import { Link } from "react-router";
 
 export default function InteractiveList() {
+  const navigate = useNavigate();
   const { isLoading, layer3 } = useSelector((state) => state.layers);
 
-  console.log(layer3);
+  // console.log(layer3);
 
-  let vdoList = [];
+  // let vdoList = [];
+  // let prev = layer3[0];
+  // vdoList.push(prev);
 
-  layer3.forEach((l) => {
-    vdoList.push(l[0]);
-  });
+  // for (let i = 1; i < layer3.length; i++) {
+  //   if (layer3[i] != prev) {
+  //     vdoList.push(layer3[i]);
+  //     prev = layer3[i];
+  //   }
+  // }
 
-  console.log(vdoList);
+  // console.log(vdoList);
 
   return isLoading ? (
     <div id="root">
-      <div class="loader-wrapper">
-        <div class="loader"></div>
+      <div className="loader-wrapper">
+        <div className="loader"></div>
       </div>
     </div>
+  ) : layer3 ? (
+    <GoToHome />
   ) : (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
       <Grid item xs={12} md={6}>
-        <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+        <Typography m={2} variant="h4" component="div" color="secondary">
           Trending Videos
         </Typography>
         <List>
-          {vdoList.map((l, key) => (
+          {layer3.map((l, key) => (
             <ListItem key={key}>
               <ListItemIcon>
-                <FolderIcon />
+                <YouTubeIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary={l} />
+              <a
+                href={`https://www.youtube.com/watch?v=${l[1]}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ListItemText primary={l[0]} />
+              </a>
             </ListItem>
           ))}
         </List>
