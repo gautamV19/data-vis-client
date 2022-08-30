@@ -53,6 +53,7 @@ function SimpleWordcloud() {
     const payload = { start, end, category: e.text };
     console.log(payload);
     dispatch(getLayer2(payload));
+    navigate("/layer2");
   };
 
   const callbacks = {

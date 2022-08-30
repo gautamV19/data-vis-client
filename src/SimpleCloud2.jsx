@@ -5,6 +5,7 @@ import "tippy.js/animations/scale.css";
 import { useDispatch, useSelector } from "react-redux";
 import { WorkSharp } from "@mui/icons-material";
 import { getLayer3 } from "./Features/layers/layersServices";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   { text: "jQuery", value: 25 },
@@ -37,9 +38,10 @@ const options = {
 const size = [600, 400];
 
 function SimpleWordcloud() {
-  const { layer2: words, start, end } = useSelector((state) => state.layers);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { layer2: words, start, end } = useSelector((state) => state.layers);
 
   // console.log(words.data);
 
@@ -55,6 +57,7 @@ function SimpleWordcloud() {
     const payload = { start, end, tag: e.text };
     console.log(payload);
     dispatch(getLayer3(payload));
+    navigate("/layer3");
   };
 
   const callbacks = {
