@@ -12,6 +12,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useSelector } from "react-redux";
 
 import GoToHome from "../Widgets/GoToHome";
+import GoToHomeButtton from "../Widgets/GoToHomeButtton";
 
 export default function InteractiveList() {
   const { isLoading, layer3 } = useSelector((state) => state.layers);
@@ -46,6 +47,7 @@ export default function InteractiveList() {
             </ListItem>
           ))}
         </List>
+        <GoToHomeButtton />
       </Grid>
     </Box>
   );

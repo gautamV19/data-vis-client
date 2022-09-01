@@ -6,7 +6,9 @@ import "tippy.js/animations/scale.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getLayer2 } from "../Features/layersServices";
 import { useNavigate } from "react-router-dom";
+
 import GoToHome from "../Widgets/GoToHome";
+import GoToHomeButtton from "../Widgets/GoToHomeButtton";
 
 function SimpleWordcloud() {
   const dispatch = useDispatch();
@@ -49,7 +51,10 @@ function SimpleWordcloud() {
       </div>
     </div>
   ) : d.length > 0 ? (
-    <ReactWordcloud callbacks={callbacks} words={d} options={options} />
+    <React.Fragment>
+      <ReactWordcloud callbacks={callbacks} words={d} options={options} />
+      <GoToHomeButtton />
+    </React.Fragment>
   ) : (
     <GoToHome />
   );
