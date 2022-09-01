@@ -34,9 +34,10 @@ const layersSlice = createSlice({
         [getLayer1.fulfilled]: (state, action) => {
             state.isLoading = false;
             console.log('slice action of getLayer1: ', action);
-            let currPayload = action.payload.data;
+            let currPayload = action.payload;
             if (currPayload.status == 200) {
-                state.layer1 = currPayload.data;
+                console.log('data in payload of action of getLayer1: ', currPayload.data.data);
+                state.layer1 = currPayload.data.data;
             } else {
                 state.error = currPayload.error;
             }
@@ -52,9 +53,9 @@ const layersSlice = createSlice({
         },
         [getLayer2.fulfilled]: (state, action) => {
             console.log('fullfilled', action);
-            let currPayload = action.payload.data;
+            let currPayload = action.payload;
             if (currPayload.status == 200) {
-                state.layer2 = currPayload.data;
+                state.layer2 = currPayload.data.data;
             } else {
                 state.error = currPayload.error;
             }
@@ -71,9 +72,9 @@ const layersSlice = createSlice({
         },
         [getLayer3.fulfilled]: (state, action) => {
             console.log('fullfilled getLayer3', action);
-            let currPayload = action.payload.data;
+            let currPayload = action.payload;
             if (currPayload.status == 200) {
-                state.layer3 = currPayload.data;
+                state.layer3 = currPayload.data.data;
             } else {
                 state.error = currPayload.error;
             }

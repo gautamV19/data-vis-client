@@ -21,11 +21,15 @@ function SimpleWordcloud() {
     end,
   } = useSelector((state) => state.layers);
 
+  // console.log(words.length, words);
+
   let d = [];
 
-  words.forEach((e) => {
-    d.push({ text: e[0], value: e[1] });
-  });
+  if (words.length > 0) {
+    words.forEach((e) => {
+      d.push({ text: e.category, value: e.count });
+    });
+  }
 
   const myfun = (e) => {
     const payload = { start, end, category: e.text };

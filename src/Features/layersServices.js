@@ -7,13 +7,8 @@ axios.defaults.baseURL = `http://localhost:3000`
 export const getLayer1 = createAsyncThunk('layers/l1', async (data) => {
     try {
         const response = await axios.post(urls.layer1(), data);
-        console.log(response);
+        console.log("Layer1 res:", response);
         return response;
-
-        // console.log(urls.test());
-        // const response = await axios.get("/test");
-        // console.log(response);
-        // return response;
     } catch (err) {
         return err.message;
     }

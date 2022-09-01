@@ -16,6 +16,7 @@ import GoToHomeButtton from "../Widgets/GoToHomeButtton";
 
 export default function InteractiveList() {
   const { isLoading, layer3 } = useSelector((state) => state.layers);
+  // console.log(layer3.length, layer3);
 
   return isLoading ? (
     <div id="root">
@@ -38,11 +39,11 @@ export default function InteractiveList() {
                 <YouTubeIcon color="primary" />
               </ListItemIcon>
               <a
-                href={`https://www.youtube.com/watch?v=${l[1]}`}
+                href={`https://www.youtube.com/watch?v=${l.video_id}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                <ListItemText primary={l[0]} />
+                <ListItemText primary={l.title} />
               </a>
             </ListItem>
           ))}
