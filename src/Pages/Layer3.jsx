@@ -18,13 +18,15 @@ export default function InteractiveList() {
   const { isLoading, layer3 } = useSelector((state) => state.layers);
   // console.log(layer3.length, layer3);
 
+  const videoList = layer3.data;
+
   return isLoading ? (
     <div id="root">
       <div className="loader-wrapper">
         <div className="loader"></div>
       </div>
     </div>
-  ) : layer3.length < 1 ? (
+  ) : videoList.length < 1 ? (
     <GoToHome />
   ) : (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -33,7 +35,7 @@ export default function InteractiveList() {
           Trending Videos
         </Typography>
         <List>
-          {layer3.map((l, key) => (
+          {videoList.map((l, key) => (
             <ListItem key={key}>
               <ListItemIcon>
                 <YouTubeIcon color="primary" />

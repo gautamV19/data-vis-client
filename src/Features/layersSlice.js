@@ -10,9 +10,21 @@ const initialState = {
     isLoading: false,
     start: newDate,
     end: newDate,
-    layer1: [],
-    layer2: [],
-    layer3: [],
+    layer1: {
+        data: [],
+        page: 0,
+        limit: 50,
+    },
+    layer2: {
+        data: [],
+        page: 0,
+        limit: 50,
+    },
+    layer3: {
+        data: [],
+        page: 0,
+        limit: 50,
+    },
     error: null,
 };
 
@@ -36,8 +48,12 @@ const layersSlice = createSlice({
             console.log('slice action of getLayer1: ', action);
             let currPayload = action.payload;
             if (currPayload.status == 200) {
-                console.log('data in payload of action of getLayer1: ', currPayload.data.data);
-                state.layer1 = currPayload.data.data;
+                // console.log('data in payload of action of getLayer1: ', currPayload.data.data);
+                state.layer1 = {
+                    ...initialState.layer1,
+                    data: currPayload.data.data,
+                }
+                // console.log("state.layer1.data", state.layer1);
             } else {
                 state.error = currPayload.error;
             }
@@ -55,7 +71,11 @@ const layersSlice = createSlice({
             console.log('fullfilled', action);
             let currPayload = action.payload;
             if (currPayload.status == 200) {
-                state.layer2 = currPayload.data.data;
+                state.layer2 = {
+                    ...initialState.layer2,
+                    data: currPayload.data.data,
+                }
+                console.log("state.layer2", state.layer2);
             } else {
                 state.error = currPayload.error;
             }
@@ -74,7 +94,10 @@ const layersSlice = createSlice({
             console.log('fullfilled getLayer3', action);
             let currPayload = action.payload;
             if (currPayload.status == 200) {
-                state.layer3 = currPayload.data.data;
+                state.layer3 = {
+                    ...initialState.layer3,
+                    data: currPayload.data.data
+                };
             } else {
                 state.error = currPayload.error;
             }

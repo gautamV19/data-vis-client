@@ -14,16 +14,14 @@ function SimpleWordcloud() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    isLoading,
-    layer2: words,
-    start,
-    end,
-  } = useSelector((state) => state.layers);
-
-  // console.log(words.length, words);
+  const { isLoading, layer2, layer3, start, end } = useSelector(
+    (state) => state.layers
+  );
 
   let d = [];
+
+  const { data: words } = layer2;
+  const { page, limit } = layer3;
 
   if (words.length > 0) {
     words.forEach((e) => {
@@ -32,7 +30,7 @@ function SimpleWordcloud() {
   }
 
   const myfun = (e) => {
-    const payload = { start, end, tag: e.text };
+    const payload = { start, end, tag: e.text, page: 0, limit: 50 };
     console.log(payload);
     dispatch(getLayer3(payload));
     navigate("/layer3");

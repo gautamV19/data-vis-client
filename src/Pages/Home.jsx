@@ -7,7 +7,7 @@ import youtube from "/youtube.png";
 import Typography from "@mui/material/Typography";
 import { setStartDateAction, setEndDateAction } from "../Features/layersSlice";
 import { getLayer1 } from "../Features/layersServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -20,10 +20,18 @@ function App() {
   const [start, setStartDate] = useState(newDate);
   const [end, setEndDate] = useState(newDate);
 
+  const { layer1 } = useSelector((state) => state.layers);
+
+  console.log(layer1);
+
+  const { page, limit } = layer1;
+
   const handleGo = () => {
     const payload = {
       start,
       end,
+      page,
+      limit,
     };
     console.log("Payload :", payload);
     dispatch(setStartDateAction(start));
