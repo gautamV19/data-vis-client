@@ -37,6 +37,21 @@ const layersSlice = createSlice({
         },
         setEndDateAction(state, action) {
             state.end = action.payload;
+        },
+        layer1PageIncremented(state) {
+            state.layer1.page++;
+        },
+        layer1PageDecremented(state) {
+            state.layer1.page--;
+        },
+        // layer1PageIncremented(state) {
+        //     state.layer1.page++;
+        // },
+        // layer1PageIncremented(state) {
+        //     state.layer1.page++;
+        // },
+        setLayer1limit(state, action) {
+            state.layer1.limit = action.payload;
         }
     },
     extraReducers: {
@@ -110,6 +125,6 @@ const layersSlice = createSlice({
     },
 });
 
-export const { setStartDateAction, setEndDateAction } = layersSlice.actions
+export const { setStartDateAction, setEndDateAction, layer1PageIncremented, layer1PageDecremented, setLayer1limit } = layersSlice.actions
 export default layersSlice.reducer;
 
